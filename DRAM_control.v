@@ -3,7 +3,7 @@ module DRAM_control(
 	//input [7:0] address,
 	input [15:0] address,
 	input write_en,
-	output reg en1, en2, //en3, en4,
+	output reg en1, en2, en3, en4,
 	output reg [7:0] dram_address
 	);
 	
@@ -34,8 +34,8 @@ module DRAM_control(
 				begin
 					en1 <= 1'b1;
 					en2 <= 1'b0;
-//					en3 <= 1'b0;
-//					en4 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b0;
 					NEXT_COMMAND <= (write_en) ? STORE1 : DATA2;
 					//dram_address = dram_address + 7'd16;
 					if (AorB)
@@ -47,43 +47,42 @@ module DRAM_control(
 				begin
 					en1 <= 1'b0;
 					en2 <= 1'b1;
-//					en3 <= 1'b0;
-//					en4 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b0;
+					NEXT_COMMAND <= (write_en) ? STORE1 : DATA3;
+					//dram_address = dram_address + 7'd16;
+					if (AorB)
+						dram_address = dram_address + NorK;
+					else 
+						dram_address <= address[15:8];
+				end
+			DATA3:
+				begin
+					en1 <= 1'b0;
+					en2 <= 1'b0;
+					en3 <= 1'b1;
+					en4 <= 1'b0;
+					NEXT_COMMAND <= (write_en) ? STORE1 : DATA4;
+					//dram_address = dram_address + 7'd16;
+					if (AorB)
+						dram_address = dram_address + NorK;
+					else 
+						dram_address <= address[15:8];
+				end
+			DATA4:
+				begin
+					en1 <= 1'b0;
+					en2 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b1;
 					NEXT_COMMAND <= (write_en) ? STORE1 : START;
 				end
-					//dram_address = dram_address + 7'd16;
-//					if (AorB)
-//						dram_address = dram_address + NorK;
-//					else 
-//						dram_address <= address[15:8];
-//				end
-//			DATA3:
-//				begin
-//					en1 <= 1'b0;
-//					en2 <= 1'b0;
-//					en3 <= 1'b1;
-//					en4 <= 1'b0;
-//					NEXT_COMMAND <= (write_en) ? STORE1 : DATA4;
-//					//dram_address = dram_address + 7'd16;
-//					if (AorB)
-//						dram_address = dram_address + NorK;
-//					else 
-//						dram_address <= address[15:8];
-//				end
-//			DATA4:
-//				begin
-//					en1 <= 1'b0;
-//					en2 <= 1'b0;
-//					en3 <= 1'b0;
-//					en4 <= 1'b1;
-//					NEXT_COMMAND <= (write_en) ? STORE1 : START;
-//				end
 			STORE1:
 				begin
 					en1 <= 1'b1;
 					en2 <= 1'b0;
-//					en3 <= 1'b0;
-//					en4 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b0;
 					NEXT_COMMAND <= (write_en) ? STORE2 : START;
 					dram_address <= address[15:8];
 				end
@@ -91,29 +90,29 @@ module DRAM_control(
 				begin
 					en1 <= 1'b0;
 					en2 <= 1'b1;
-//					en3 <= 1'b0;
-//					en4 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b0;
+					NEXT_COMMAND <= (write_en) ? STORE3 : START;
+					dram_address = dram_address + NorK;
+				end
+			STORE3:
+				begin
+					en1 <= 1'b0;
+					en2 <= 1'b0;
+					en3 <= 1'b1;
+					en4 <= 1'b0;
+					NEXT_COMMAND <= (write_en) ? STORE4 : START;
+					dram_address = dram_address + NorK;
+				end
+			STORE4:
+				begin
+					en1 <= 1'b0;
+					en2 <= 1'b0;
+					en3 <= 1'b0;
+					en4 <= 1'b1;
 					dram_address = dram_address + NorK;
 					NEXT_COMMAND <= START;
 				end
-//			STORE3:
-//				begin
-//					en1 <= 1'b0;
-//					en2 <= 1'b0;
-//					en3 <= 1'b1;
-//					en4 <= 1'b0;
-//					NEXT_COMMAND <= (write_en) ? STORE4 : START;
-//					dram_address = dram_address + NorK;
-//				end
-//			STORE4:
-//				begin
-//					en1 <= 1'b0;
-//					en2 <= 1'b0;
-//					en3 <= 1'b0;
-//					en4 <= 1'b1;
-//					dram_address = dram_address + NorK;
-//					NEXT_COMMAND <= START;
-//				end
 		endcase
 
 endmodule 

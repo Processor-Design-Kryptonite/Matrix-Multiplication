@@ -3,11 +3,11 @@ module dataA(
 	input [15:0] address,
 	input clk,
 	input write_en,
-	input [15:0] data1,data2,//data3,data4,
-	output [15:0] q1,q2//q3,q4
+	input [15:0] data1,data2,data3,data4,
+	output [15:0] q1,q2,q3,q4
 	);
 
-	wire en1,en2,enable;
+	wire en1,en2,en3,en4,enable;
 	wire [15:0] q,data;
 	wire [7:0] dram_address;
 
@@ -17,8 +17,8 @@ module dataA(
 		.write_en(write_en),
 		.en1(en1),
 		.en2(en2),
-//		.en3(en3),
-//		.en4(en4),
+		.en3(en3),
+		.en4(en4),
 		.dram_address(dram_address)
 	);
 
@@ -26,13 +26,13 @@ module dataA(
 		.clk(clk),
 		.en1(en1),
 		.en2(en2),
-//		.en3(en3),
-//		.en4(en4),
+		.en3(en3),
+		.en4(en4),
 		.write_en(write_en),
 		.data1(data1),
 		.data2(data2),
-//		.data3(data3),
-//		.data4(data4),
+		.data3(data3),
+		.data4(data4),
 		.data(data),
 		.wren(enable)
 	);
@@ -59,18 +59,18 @@ module dataA(
 		.data_out(q2)
 	);
 
-//	DRAM_op dataq3(
-//		.clk(clk),
-//		.enable(en3),
-//		.q(q),
-//		.data_out(q3)
-//	);
-//
-//	DRAM_op dataq4(
-//		.clk(clk),
-//		.enable(en4),
-//		.q(q),
-//		.data_out(q4)
-//	);
+	DRAM_op dataq3(
+		.clk(clk),
+		.enable(en3),
+		.q(q),
+		.data_out(q3)
+	);
+
+	DRAM_op dataq4(
+		.clk(clk),
+		.enable(en4),
+		.q(q),
+		.data_out(q4)
+	);
 
 endmodule
