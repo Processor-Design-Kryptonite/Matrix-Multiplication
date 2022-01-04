@@ -1,0 +1,13 @@
+db/
+output_files/
+greybox_tmp/
+incremental_db/
+simulation/
+*.bak
+*.mif
+*.qip
+*.qsf
+*.qws
+*.rpt
+*.qpf
+*.txt

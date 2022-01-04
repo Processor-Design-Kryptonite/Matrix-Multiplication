@@ -1,0 +1,38 @@
+`timescale 1ns/1ps
+module CPU_tb;
+
+	reg MAIN_CLOCK;
+	wire PROCESS_DONE;
+	wire [15:0] CURRENTADDRESS, REG_AC, REG_1, REG_2, REG_3, REG_AS, OUTPUT_FROM_RAM;
+	wire [5:0] CMD;
+	wire [7:0] INSTRUCTIONADDRESS, CURRENTINSTRUCTION;
+	
+	CPU cpu (
+		.MAIN_CLOCK(MAIN_CLOCK),
+		.CURRENTADDRESS(CURRENTADDRESS),
+		.REG_AC(REG_AC),
+		.REG_1(REG_1),
+		.REG_2(REG_2),
+		.REG_3(REG_3),
+		.REG_AS(REG_AS),
+		.OUTPUT_FROM_RAM(OUTPUT_FROM_RAM),
+		.INSTRUCTIONADDRESS(INSTRUCTIONADDRESS),
+		.CURRENTINSTRUCTION(CURRENTINSTRUCTION),
+		.CMD(CMD),
+		.PROCESS_DONE(PROCESS_DONE)
+	);
+	
+	// Clock
+	initial begin
+		MAIN_CLOCK = 1'b0;
+			forever begin
+				#8 MAIN_CLOCK = ~MAIN_CLOCK;
+			end
+	end
+	
+	// Test
+	initial begin
+	#8000000
+	$finish;
+	end
+endmodule
