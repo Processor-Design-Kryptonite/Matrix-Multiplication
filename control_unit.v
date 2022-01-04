@@ -235,24 +235,6 @@ always @ (CONTROL_COMMAND or Z or instruction)
 				selectors <= 17'b0_0000_0000_0000_0010;
 				NEXT_COMMAND <= FETCH1;
 			end
-//		MVAR: // Checked
-//			begin
-//				fetch <= 0;
-//				finish <= 0;
-//				b_bus_select <= AR;
-//				alu_op <= PASS;
-//				selectors <= 13'b0_0000_0000_0010;
-//				NEXT_COMMAND <= FETCH1;
-//			end
-//		INCAR: // Checked
-//			begin
-//				fetch <= 0;
-//				finish <= 0;
-//				b_bus_select <= DATA_FROM_RAM;
-//				alu_op <= ADDAB;
-//				selectors <= 13'b0_0001_0000_0000;
-//				NEXT_COMMAND <= FETCH1;
-//			end
 		INCR1: // Checked
 			begin
 				fetch <= 0;
@@ -343,24 +325,6 @@ always @ (CONTROL_COMMAND or Z or instruction)
 				selectors <= 17'b0_0000_0000_0000_0010;
 				NEXT_COMMAND <= FETCH1;
 			end
-//		DIV: // Checked
-//			begin
-//				fetch <= 0;
-//				finish <= 0;
-//				b_bus_select <= INSTRUCTIONS;
-//				alu_op <= PASS;
-//				selectors <= 13'b1_0000_0000_0000;
-//				NEXT_COMMAND <= DIV1;
-//			end
-//		DIV1: // Checked
-//			begin
-//				fetch <= 0;
-//				finish <= 0;
-//				b_bus_select <= INSTRUCTIONS;
-//				alu_op <= DIVA;
-//				selectors <= 13'b0_0000_0000_0010;
-//				NEXT_COMMAND <= FETCH1;
-//			end
 		ADDM: // Checked
 			begin
 				fetch <= 0;

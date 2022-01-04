@@ -86,7 +86,7 @@ module DRAM (
 	defparam
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "DRAM_init_mat_1057.mif",
+		altsyncram_component.init_file = "DRAM_init_mat_1476.mif",
 		altsyncram_component.intended_device_family = "Cyclone IV E",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=INS",
 		altsyncram_component.lpm_type = "altsyncram",

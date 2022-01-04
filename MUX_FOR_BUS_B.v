@@ -7,7 +7,7 @@ module MUX_FOR_BUS_B
 		// Outputs
 		output reg [15:0] bus
 	);
-	always @ (*) //select or DATA_FROM_RAM or PC or R1 or R2 or R3 or TR or R or D or AC or instructions or AR
+	always @ (*) 
 		begin
 			case(select)
 				4'd0: bus = DATA_FROM_RAM;

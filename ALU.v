@@ -27,7 +27,7 @@ module ALU
 				ZER:
 					begin
 						C_bus = 0;
-						FLAG_Z = 1;
+						FLAG_Z = 0;
 					end
 				MUL:
 					begin
